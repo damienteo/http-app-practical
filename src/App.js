@@ -1,10 +1,23 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
   state = {
     posts: []
   };
+
+  //Asynchronous operation means something that will happen in the future. There will be a delay. It won't happen immediately
+  //When we create a promise, the request is initially in the pending state.
+
+  async componentDidMount() {
+    // const promise = axios.get("https://jsonplaceholder.typicode.com/posts");
+    // const response = await promise;
+    const { data: posts } = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    this.setState({ posts });
+  }
 
   handleAdd = () => {
     console.log("Add");
